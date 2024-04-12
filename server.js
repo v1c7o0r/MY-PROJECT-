@@ -60,4 +60,41 @@ app.listen(port, () => {
     console.log (`Server is listening at http://localhost:${port}`);
 });
 
- 
+const apiKey = ''; // Replace 'YOUR_API_KEY' with your actual API key from OMDB
+
+// Function to fetch movie data from OMDB API
+function fetchMovieData(searchQuery) {
+  const apiUrl = `https://www.omdbapi.com/?apikey=${apiKey}&s=${searchQuery}`;
+
+  return fetch(apiUrl)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (data.Error) {
+        throw new Error(data.Error);
+      }
+      return data.Search; // Extract the 'Search' array containing movie data
+    })
+    .catch(error => {
+      console.error('Error fetching movie data:', error);
+      return null; // Return null if there's an error
+    });
+}
+
+// Example usage:
+const searchQuery = 'Batman'; // Example search query
+fetchMovieData(searchQuery)
+  .then(movies => {
+    if (movies) {
+      console.log('Movie data:', movies);
+      // Process the retrieved movie data and update the UI
+      // Here, you can dynamically update the movie recommendations section
+    } else {
+      console.log('No movie data available.');
+      // Handle the case where no movie data is available
+    }
+  });
