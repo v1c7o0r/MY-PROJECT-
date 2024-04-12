@@ -23,8 +23,6 @@ app.get('/api/movies/:id', (req, res) => {
     if (!movie) return res.status(404).send('Movie not found.');
     res.json(movie);
 });
-
-// Endpoint to add a new movie
 app.post('/api/movies', (req, res) => {
     const movie = {
         id: movies.length + 1,
@@ -34,8 +32,6 @@ app.post('/api/movies', (req, res) => {
     movies.push(movie);
     res.json(movie);
 });
-
-// Endpoint to update an existing movie
 app.put('/api/movies/:id', (req, res) => {
     const movie = movies.find(m => m.id === parseInt(req.params.id));
     if (!movie) return res.status(404).send('Movie not found.');
@@ -44,8 +40,6 @@ app.put('/api/movies/:id', (req, res) => {
     movie.director = req.body.director;
     res.json(movie);
 });
-
-// Endpoint to delete a movie
 app.delete('/api/movies/:id', (req, res) => {
     const movie = movies.find(m => m.id === parseInt(req.params.id));
     if (!movie) return res.status(404).send('Movie not found.');
@@ -54,15 +48,11 @@ app.delete('/api/movies/:id', (req, res) => {
     movies.splice(index, 1);
     res.json(movie);
 });
-
-// Start the server
 app.listen(port, () => {
     console.log (`Server is listening at http://localhost:${port}`);
 });
 
-const apiKey = '6038d72e'; // Replace 'YOUR_API_KEY' with your actual API key from OMDB
-
-// Function to fetch movie data from OMDB API
+const apiKey = '6038d72e';
 function fetchMovieData(searchQuery) {
   const apiUrl = `https://www.omdbapi.com/?apikey=${apiKey}&s=${searchQuery}`;
 
@@ -77,11 +67,11 @@ function fetchMovieData(searchQuery) {
       if (data.Error) {
         throw new Error(data.Error);
       }
-      return data.Search; // Extract the 'Search' array containing movie data
+      return data.Search;
     })
     .catch(error => {
       console.error('Error fetching movie data:', error);
-      return null; // Return null if there's an error
+      return null;
     });
 }
 
