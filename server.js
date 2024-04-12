@@ -59,29 +59,5 @@ app.delete('/api/movies/:id', (req, res) => {
 app.listen(port, () => {
     console.log (`Server is listening at http://localhost:${port}`);
 });
-const apiUrl = '';
 
-fetch(apiUrl)
-  .then(response => response.json())
-  .then(data => {
-    // Process the retrieved movie data
-    console.log(data);
-  })
-  .catch(error => {
-    console.error('Error fetching data:', error);
-  });
-  fetch(apiUrl)
-  .then(response => response.json())
-  .then(data => {
-    // Process the retrieved movie data
-    data.forEach(movie => {
-      const movieElement = document.createElement('div');
-      movieElement.classList.add('movie');
-      movieElement.innerHTML = `<h3>${movie.title}</h3><p>Director: ${movie.director}</p>`;
-      document.getElementById('movie-list').appendChild(movieElement);
-    });
-  })
-  .catch(error => {
-    console.error('Error fetching data:', error);
-  });
  
