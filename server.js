@@ -57,33 +57,5 @@ app.delete('/api/movies/:id', (req, res) => {
 
 // Start the server
 app.listen(port, () => {
-    console.log(`Server is listening at http://localhost:${port}`);
+    console.log (`Server is listening at http://localhost:${port}`);
 });
-
-// Event listener 1: Toggling dark mode
-document.getElementById('dark-mode-button').addEventListener('click', toggleDarkMode);
-
-function toggleDarkMode() {
-    // Toggle dark mode by adding/removing 'dark-mode' class from body
-    document.body.classList.toggle('dark-mode');
-}
-
-// Event listener 2: Searching for a movie by title
-document.getElementById('search-button').addEventListener('click', searchMovie);
-
-function searchMovie() {
-    const searchTerm = document.getElementById('search-input').value.toLowerCase();
-    const filteredMovies = movies.filter(movie => movie.title.toLowerCase().includes(searchTerm));
-    console.log(filteredMovies);
-    // Display or do something with filteredMovies
-}
-
-// Event listener 3: Filtering movies by director
-document.getElementById('filter-button').addEventListener('click', filterMoviesByDirector);
-
-function filterMoviesByDirector() {
-    const directorName = document.getElementById('director-input').value.toLowerCase();
-    const filteredMovies = movies.filter(movie => movie.director.toLowerCase() === directorName);
-    console.log(filteredMovies);
-    // Display or do something with filteredMovies
-}
