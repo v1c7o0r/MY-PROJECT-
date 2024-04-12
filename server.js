@@ -60,7 +60,7 @@ app.listen(port, () => {
     console.log (`Server is listening at http://localhost:${port}`);
 });
 
-const apiKey = ''; // Replace 'YOUR_API_KEY' with your actual API key from OMDB
+const apiKey = '6038d72e'; // Replace 'YOUR_API_KEY' with your actual API key from OMDB
 
 // Function to fetch movie data from OMDB API
 function fetchMovieData(searchQuery) {
